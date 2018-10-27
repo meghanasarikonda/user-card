@@ -1,16 +1,21 @@
 import React, { Component } from "react";
+import { createStore } from "redux";
+import reducer from "./reducers";
 import user from "./images/user.png";
 import "./App.css";
 
-class App extends Component {
-  state = {
+const initialState = {
     name: "Alex Bakery",
     description: "Software Engineer, Speaker, and Occasional Model",
     likes: "Cats, Wine, and Black dresses",
     location: "localhost"
   };
+const store = createStore(reducer, initialState);
+
+class App extends Component {
+
   render() {
-    const { name, description, likes, location } = this.state;
+    const { name, description, likes, location } = store.getState();
     return (
       <div className="App">
         <section className="User__img">
